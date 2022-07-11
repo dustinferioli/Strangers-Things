@@ -8,31 +8,31 @@ export const APIURL = `https://strangers-things.herokuapp.com/api/${cohortName}`
 // Used to register a new user
 export async function registerUser() {
     try {
-        const { user }  = await axios.post(`${APIURL}/users/register`, {
-            username, password
-        });
-        // console.log(user);
-        return user;
+        const { data }  = await axios.post(`${APIURL}/users/register`);
+        console.log(data);
+        // return data;
     } catch (error) {
         console.error('Failed to register user: ', error)
     }
 }
-// console.log(registerUser())
+// console.log(registerUser()); 
 
 // POST /api/COHORT-NAME/users/login
 // Used for logging into an existing account
-export async function userLogin() {
-    try {
-        const { user } = await axios.post(`${APIURL}/users/login`, {
-            username, password
-        });
-        // console.log(user);
-        return user;
-    } catch (error) {
-        console.error('Failed to login: ', error)
-    }
-}
-// console.log(userLogin());
+// export async function userLogin() {
+//     try {
+//         const { data } = await axios.post(`${APIURL}/users/login`,{
+//             username: username, 
+//             password: password
+//         });
+//         // const { username, password } = data
+//         // console.log(username);
+//         return data;
+//     } catch (error) {
+//         console.error('Failed to login: ', error)
+//     }
+// }
+// console.log(userLogin())
 
 // GET /api/COHORT-NAME/users/me
 // For getting a logged-in user's data

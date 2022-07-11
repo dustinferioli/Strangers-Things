@@ -38,8 +38,8 @@ const App = () => {
     return (
         <div className="app">
         {/* <Home /> */}
-        <Listings allPosts={allPosts} setAllPosts={setAllPosts} />
-        {/* <Login /> */}
+        {/* <Listings allPosts={allPosts} setAllPosts={setAllPosts} /> */}
+        <Login />
 
         </div>
     )
