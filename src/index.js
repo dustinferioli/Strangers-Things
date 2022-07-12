@@ -15,8 +15,9 @@ import {
 } from './api'
 
 import { 
-    Login,
+    Register,
     Listings,
+    Login,
     // Home
 } from './components';
 
@@ -39,6 +40,7 @@ const App = () => {
         <div className="app">
         {/* <Home /> */}
         {/* <Listings allPosts={allPosts} setAllPosts={setAllPosts} /> */}
+        {/* <Register /> */}
         <Login />
 
         </div>

@@ -1,7 +1,7 @@
 import axios from 'axios';
 // const axios = require('axios').default;
-export const cohortName = '2206-FTB-ET-WEB-FT-B'
-export const APIURL = `https://strangers-things.herokuapp.com/api/${cohortName}`
+// export const cohortName = '2206-FTB-ET-WEB-FT-B'
+export const APIURL = `https://strangers-things.herokuapp.com/api/2206-FTB-ET-WEB-FT-B`
 
 
 // POST /api/COHORT-NAME/users/me

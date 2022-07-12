@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 // import { userLogin } from "../api";
 import { APIURL } from "../api";
 
-const Login = () => {
+const Register = () => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -13,14 +13,37 @@ const Login = () => {
 
     
     useEffect(() => {
-        const userInLocalStorage = localStorage.getItem("currentUser");
-        console.log(userInLocalStorage)
-        setCurrentLoggedInUser(JSON.parse(userInLocalStorage))
+        const userinLocalStorage = localStorage.getItem("currentUser");
+        setCurrentLoggedInUser(JSON.parse(userinLocalStorage))
     }, [])
 
+    // const handleSubmit = async (evt) => {
+    //     evt.preventDefault();
+    //     // console.log(username);
+    //     // console.log(password);
+    //     // console.log(APIURL);
+    //     try {
+    //         const response = await axios.post(`${APIURL}/users/register`, {
+    //             user: { 
+    //             username: username,
+    //             password: password 
+    //         }
+    //         })
+    //         return response;
+    //         // console.log(response);
+    //     } catch(error) {
+    //         console.error(error)
+    //     } 
+    //     // finally {
+    //     //     setUsername(username);
+    //     //     setPassword(password);
+    //     // }
+    // }
+
+    //
     const handleSubmit = async (evt) => {
         evt.preventDefault();
-        fetch(`${APIURL}/users/login`, {
+        fetch(`${APIURL}/users/register`, {
             method: "POST",
             headers: {
                 'Content-Type' : 'application/json'
@@ -34,24 +57,15 @@ const Login = () => {
         }).then(response => response.json())
         .then(result => {
             console.log(result);
+            // return result;
         })
         .catch(console.error)
-
-        const loggedInUser = {
-            username,
-            password
-        }
-
-        localStorage.setItem("currentUser", JSON.stringify(loggedInUser));
-        setCurrentLoggedInUser(loggedInUser);
-        setUsername('');
-        setPassword('');
-        console.log(`This is our new localStorage: ${localStorage}`)
     }
 
+    
     return (
         <div>
-            <h1>Login</h1>
+            <h1>Register</h1>
 
             <form onSubmit={handleSubmit}>
                 <label>Username: </label>
@@ -60,18 +74,18 @@ const Login = () => {
                 <label>Password: </label>
                 <input type="password" required value={password} onChange={(evt) => setPassword(evt.target.value)}></input>
 
-                <button type="submit">Login</button>
+                <button type="submit">Register</button>
             </form>
 
-            <div>
+            {/* <div>
                 {
                     currentLoggedInUser.username && currentLoggedInUser.password ? 
                     <div>You are logged in, {currentLoggedInUser.username}</div> :
                     <div>You are currently logged out!</div>
                 }
-            </div>
+            </div> */}
         </div>
     )
 }
 
-export default Login;
+export default Register;
