@@ -9,12 +9,12 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [currentLoggedInUser, setCurrentLoggedInUser] = useState({}) // for saving a user's data in local storage
-    // const history = useHistory();
+
 
     
     useEffect(() => {
         const userInLocalStorage = localStorage.getItem("currentUser");
-        console.log(userInLocalStorage)
+        // console.log(userInLocalStorage)
         setCurrentLoggedInUser(JSON.parse(userInLocalStorage))
     }, [])
 
@@ -38,15 +38,15 @@ const Login = () => {
         .catch(console.error)
 
         const loggedInUser = {
-            username,
-            password
+            username: username,
+            password: password
         }
 
         localStorage.setItem("currentUser", JSON.stringify(loggedInUser));
         setCurrentLoggedInUser(loggedInUser);
-        setUsername('');
-        setPassword('');
-        console.log(`This is our new localStorage: ${localStorage}`)
+        setUsername(username);
+        setPassword(password);
+        // console.log(`This is our new localStorage: ${localStorage}`)
     }
 
     return (
@@ -70,6 +70,7 @@ const Login = () => {
                     <div>You are currently logged out!</div>
                 }
             </div>
+            <div>Don't have an account? <a href="/register">Register for an account</a></div>
         </div>
     )
 }

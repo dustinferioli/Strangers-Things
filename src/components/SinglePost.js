@@ -31,6 +31,9 @@ const SinglePost = (props) => {
                     // use 
                 }
                 <p>{createdAt}</p>
+                <p>{updatedAt}</p>
+                <p>{messages}</p>
+                {isAuthor ? <div>you can edit this</div> : <div>you can't edit this</div>}
             </div>
         </div>
     )

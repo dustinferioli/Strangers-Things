@@ -17,30 +17,7 @@ const Register = () => {
         setCurrentLoggedInUser(JSON.parse(userinLocalStorage))
     }, [])
 
-    // const handleSubmit = async (evt) => {
-    //     evt.preventDefault();
-    //     // console.log(username);
-    //     // console.log(password);
-    //     // console.log(APIURL);
-    //     try {
-    //         const response = await axios.post(`${APIURL}/users/register`, {
-    //             user: { 
-    //             username: username,
-    //             password: password 
-    //         }
-    //         })
-    //         return response;
-    //         // console.log(response);
-    //     } catch(error) {
-    //         console.error(error)
-    //     } 
-    //     // finally {
-    //     //     setUsername(username);
-    //     //     setPassword(password);
-    //     // }
-    // }
 
-    //
     const handleSubmit = async (evt) => {
         evt.preventDefault();
         fetch(`${APIURL}/users/register`, {
@@ -56,8 +33,8 @@ const Register = () => {
             })
         }).then(response => response.json())
         .then(result => {
-            console.log(result);
-            // return result;
+            // console.log(result);
+            return result;
         })
         .catch(console.error)
     }
