@@ -36,3 +36,9 @@
     border: 1px solid white;
 }
 
+}
+
+.nav-links {
+    justify-content: space-between;
+
+}

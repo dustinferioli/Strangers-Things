@@ -6,9 +6,7 @@ import {
     BrowserRouter as Router,
     Routes,
     Route,
-    Link,
-    Switch,
-    Redirect
+    Link
   } from 'react-router-dom';
   
 
@@ -19,12 +17,12 @@ import {
 } from './api'
 
 import { 
+    NavBar,
     Register,
     Listings,
     Login,
     Home,
     NewPostForm,
-    NavBar,
     Profile
 } from './components';
 

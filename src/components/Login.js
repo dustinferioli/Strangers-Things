@@ -49,8 +49,8 @@ const Login = (props) => {
         .catch(console.error)
 
         const loggedInUser = {
-            username,
-            password
+            username: username,
+            password: password
         }
 
         localStorage.setItem("currentUser", JSON.stringify(loggedInUser));
@@ -85,6 +85,7 @@ const Login = (props) => {
                     <div>You are currently logged out!</div>
                 }
             </div>
+            <div>Don't have an account? <a href="/register">Register for an account</a></div>
         </div>
     )
 }

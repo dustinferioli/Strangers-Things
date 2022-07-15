@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import SinglePost from './SinglePost';
+import { Link } from "react-router-dom";
 
 const Listings = (props) => {
     // console.log(props);
@@ -8,7 +9,7 @@ const Listings = (props) => {
 
     return (
         <div>
-            <a href="/addpost">Add A Listing</a>
+            <Link to="/addpost">Add Post</Link>>
             {
                 // potentially add a button that sorts posts by when its added? using .reverse()
                 posts ? posts.reverse().map((singlePost, index) => {
