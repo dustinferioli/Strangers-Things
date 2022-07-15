@@ -3,33 +3,15 @@ import SinglePost from './SinglePost';
 
 const Listings = (props) => {
     // console.log(props);
-
     const { allPosts } = props;
-    // console.log(allPosts);
     const { posts } = allPosts;
-    // console.log(posts);
-    // const { author, 
-    //     description, 
-    //     isAuthor, 
-    //     location, 
-    //     message, 
-    //     price, 
-    //     title,
-    //     willDeliver,
-    //     active,
-    //     createdAt,
-    //     updatedAt,  
-    // } = posts 
-    // console.log(posts);
-
-
-
-    
 
     return (
         <div>
+            <a href="/addpost">Add A Listing</a>
             {
-                posts ? posts.map((singlePost, index) => {
+                // potentially add a button that sorts posts by when its added? using .reverse()
+                posts ? posts.reverse().map((singlePost, index) => {
                     return <SinglePost singlePost={singlePost} index={index}/>
                 }) : <div>No posts found.</div>
             } 

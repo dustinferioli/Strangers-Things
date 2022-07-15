@@ -4,6 +4,21 @@ import axios from 'axios';
 export const APIURL = `https://strangers-things.herokuapp.com/api/2206-FTB-ET-WEB-FT-B`
 
 
+// TEST ME
+export async function testMe() {
+    try {
+        const { data } = await axios.get(`${APIURL}/test/me`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.userToken}`
+            }});
+            return data.success;
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+
 // POST /api/COHORT-NAME/users/me
 // Used to register a new user
 export async function registerUser() {
@@ -36,9 +51,36 @@ export async function registerUser() {
 
 // GET /api/COHORT-NAME/users/me
 // For getting a logged-in user's data
-export async function getUserData() {
-    try {
 
+// export async function getUserData() {
+//     try {
+        // await fetch(`${APIURL}/users/me`, {
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'Authorization': `Bearer ${localStorage.userToken}`
+        //     },
+//         }).then(response => response.json())
+//         //   .then(result => {
+//         //     // console.log(result);
+//         //     // console.log(result.data);
+//         //     // return result.data;
+//         //   })
+//           .catch(console.error)
+//     } catch (error) {
+//         console.error('Failed to get user data: ', error)
+//     }
+// }
+// getUserData();
+
+export async function getUserData(){
+    try {
+        const { data } = await axios.get(`${APIURL}/users/me`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.userToken}`
+            }});
+            // console.log(data.data)
+            return data.data;
     } catch (error) {
         console.error('Failed to get user data: ', error)
     }
@@ -48,7 +90,11 @@ export async function getUserData() {
 // for displaying posts 
 export async function getPosts() {
     try {
-        const { data }  = await axios.get(`${APIURL}/posts`);
+        const { data }  = await axios.get(`${APIURL}/posts`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.userToken}`
+            }});
         // console.log(data.data);
         return data.data;
     } catch (error) {
@@ -62,33 +108,41 @@ export async function getPosts() {
 
 // POST /api/COHORT-NAME/posts
 // for creating a post
-export async function createPost() {
-    try {
+// export async function createPost() {
+//     try {
         
-    } catch (error) {
-        console.error('Failed to create post: ', error)
-    }
-}
+//     } catch (error) {
+//         console.error('Failed to create post: ', error)
+//     }
+// }
 
 // PATCH /api/COHORT-NAME/posts/POST_ID
 // for editing a post
-export async function editPost() {
-    try {
+// export async function editPost() {
+//     try {
         
-    } catch (error) {
-        console.error('Failed to edit post: ', error)
-    }
-}
+//     } catch (error) {
+//         console.error('Failed to edit post: ', error)
+//     }
+// }
+
+
 
 // DELETE /api/COHORT-NAME/posts/POST_ID
 // for deleting a post
-export async function deletePost() {
-    try {
-        
-    } catch (error) {
-        console.error('Failed to delete post: ', error)
-    }
-}
+// export async function deletePost() {
+//     try {
+//         const { data } = await axios.delete(`${APIURL}/posts/${}`, {
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 'Authorization': `Bearer ${localStorage.userToken}`
+//             }});
+//         console.log(data);
+//     } catch (error) {
+//         console.error('Failed to delete post: ', error)
+//     }
+// }
+
 
 // POST /api/COHORT-NAME/posts/POST_ID/messages
 // for creating 

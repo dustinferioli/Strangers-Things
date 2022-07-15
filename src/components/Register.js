@@ -9,6 +9,7 @@ const Register = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [currentLoggedInUser, setCurrentLoggedInUser] = useState({}) // for saving a user's data in local storage
+    const [token, setToken] = useState()
     // const history = useHistory();
 
     
@@ -17,30 +18,6 @@ const Register = () => {
         setCurrentLoggedInUser(JSON.parse(userinLocalStorage))
     }, [])
 
-    // const handleSubmit = async (evt) => {
-    //     evt.preventDefault();
-    //     // console.log(username);
-    //     // console.log(password);
-    //     // console.log(APIURL);
-    //     try {
-    //         const response = await axios.post(`${APIURL}/users/register`, {
-    //             user: { 
-    //             username: username,
-    //             password: password 
-    //         }
-    //         })
-    //         return response;
-    //         // console.log(response);
-    //     } catch(error) {
-    //         console.error(error)
-    //     } 
-    //     // finally {
-    //     //     setUsername(username);
-    //     //     setPassword(password);
-    //     // }
-    // }
-
-    //
     const handleSubmit = async (evt) => {
         evt.preventDefault();
         fetch(`${APIURL}/users/register`, {
@@ -58,32 +35,37 @@ const Register = () => {
         .then(result => {
             console.log(result);
             // return result;
+            // return result.data.token;
+            localStorage.setItem("userToken", result.data.token);
+            
         })
         .catch(console.error)
     }
 
     
     return (
-        <div>
+        <div className="registration-form">
             <h1>Register</h1>
 
             <form onSubmit={handleSubmit}>
                 <label>Username: </label>
+                <br></br>
                 <input type="text" required value={username} onChange={(evt) => setUsername(evt.target.value)}></input>
-
+                <br></br>
                 <label>Password: </label>
+                <br></br>
                 <input type="password" required value={password} onChange={(evt) => setPassword(evt.target.value)}></input>
-
+                <br></br>
                 <button type="submit">Register</button>
             </form>
 
-            {/* <div>
+            <div>
                 {
                     currentLoggedInUser.username && currentLoggedInUser.password ? 
                     <div>You are logged in, {currentLoggedInUser.username}</div> :
                     <div>You are currently logged out!</div>
                 }
-            </div> */}
+            </div>
         </div>
     )
 }
