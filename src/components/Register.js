@@ -13,14 +13,16 @@ const Register = () => {
     // const history = useHistory();
 
     
-    useEffect(() => {
-        const userinLocalStorage = localStorage.getItem("currentUser");
-        setCurrentLoggedInUser(JSON.parse(userinLocalStorage))
-    }, [])
+    // useEffect(() => {
+    //     const userInLocalStorage = localStorage.getItem("currentUser");
+    //     // console.log(userInLocalStorage)
+    //     setCurrentLoggedInUser(JSON.parse(userInLocalStorage));
+        
+    // }, [])
 
     const handleSubmit = async (evt) => {
         evt.preventDefault();
-        fetch(`${APIURL}/users/register`, {
+        await fetch(`${APIURL}/users/register`, {
             method: "POST",
             headers: {
                 'Content-Type' : 'application/json'
@@ -36,7 +38,9 @@ const Register = () => {
             console.log(result);
             // return result;
             // return result.data.token;
-            localStorage.setItem("userToken", result.data.token);
+            const { token } = result.data;
+            setToken(token)
+            localStorage.setItem("userToken", token);
             
         })
         .catch(console.error)
@@ -54,18 +58,10 @@ const Register = () => {
                 <br></br>
                 <label>Password: </label>
                 <br></br>
-                <input type="password" required value={password} onChange={(evt) => setPassword(evt.target.value)}></input>
+                <input type="password" required value={password} minLength="8" onChange={(evt) => setPassword(evt.target.value)}></input>
                 <br></br>
                 <button type="submit">Register</button>
             </form>
-
-            <div>
-                {
-                    currentLoggedInUser.username && currentLoggedInUser.password ? 
-                    <div>You are logged in, {currentLoggedInUser.username}</div> :
-                    <div>You are currently logged out!</div>
-                }
-            </div>
         </div>
     )
 }

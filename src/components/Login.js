@@ -2,10 +2,10 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 // import { userLogin } from "../api";
 import { APIURL } from "../api";
-
+import { useNavigate } from "react-router-dom";
 const Login = (props) => {
-
-    const { currentLoggedInUser, setCurrentLoggedInUser } = props;
+    let navigate = useNavigate();
+    const { currentLoggedInUser, setCurrentLoggedInUser, isLoggedIn, setIsLoggedIn } = props;
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     // const [currentLoggedInUser, setCurrentLoggedInUser] = useState({}) 
@@ -13,9 +13,9 @@ const Login = (props) => {
 
     
     useEffect(() => {
-        const userInLocalStorage = localStorage.getItem("currentUser");
-        // console.log(userInLocalStorage)
-        setCurrentLoggedInUser(JSON.parse(userInLocalStorage));
+        const userinLocalStorage = localStorage.getItem("currentUser");
+        userinLocalStorage ? setCurrentLoggedInUser(JSON.parse(userinLocalStorage))
+                            : null
     }, [])
 
 
@@ -42,8 +42,11 @@ const Login = (props) => {
         }).then(response => response.json())
         .then(result => {
             // console.log(result.data.token);
-            localStorage.setItem("userToken", result.data.token);
-
+            let { token } = result.data;
+            // console.log(token);
+            localStorage.setItem("userToken", token);
+            setToken(token);
+            // console.log(token);
             // console.log(localStorage.userToken);
         })
         .catch(console.error)
@@ -57,7 +60,12 @@ const Login = (props) => {
         setCurrentLoggedInUser(loggedInUser);
         setUsername(username);
         setPassword(password);
-        console.log(`This is our new localStorage: ${localStorage.currentUser}`)
+        setIsLoggedIn(true);
+        setTimeout(alert(`Logging you in, ${username}`), 1000);
+        navigate("/profile", { replace: true });
+        
+
+        // console.log(`This is our new localStorage: ${localStorage.currentUser}`)
     }
 
     return (

@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { APIURL } from "../api";
+import { 
+    APIURL,
+    // deletePost,
+    // addMessage 
+} from "../api";
 import axios from "axios";
-import { isPlainObject } from "@mui/utils";
-
+let timeAgo = require('node-time-ago');
 const SinglePost = (props) => {
     
     const { singlePost, index } = props;
-    // console.log(props);
+    // console.log(singlePost);
     const { author, 
         description, 
         isAuthor, 
@@ -22,6 +25,7 @@ const SinglePost = (props) => {
         _id  
     } = singlePost 
 
+    const [messageContent, setMessageContent] = useState('');
 
     async function deletePost() {
         try {
@@ -31,22 +35,72 @@ const SinglePost = (props) => {
                     'Authorization': `Bearer ${localStorage.userToken}`
                 }});
             console.log(data);
+            alert(`Deleting post...`)
         } catch (error) {
             console.error('Failed to delete post: ', error)
         }
     }
 
-    // create a function that links individual post to message/reply page
-    // console.log(isAuthor);
+    async function editPost() {
+        try {
+            await fetch(`${APIURL}/posts/${_id}`, {
+                method: "PATCH",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.userToken}`
+                },
+                body: JSON.stringify({
+                    post: {
+                        title,
+                        description,
+                        price,
+                        location,
+                        willDeliver
+                    }
+                })
+            }).then(response => response.json())
+              .then(result => {
+                console.log(result);
+              })
+        } catch (error) {
+            console.error('Could not edit post:', error)
+        }
+    }
+
+    async function addMessage (evt) {
+        evt.preventDefault();
+        try {
+            fetch (`${APIURL}/posts/${_id}/messages`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.userToken}`
+                },
+                body: JSON.stringify({
+                    message: {
+                        content: messageContent
+                    }
+                })
+            }).then(response => response.json())
+              .then(result => {
+                console.log(result);
+                return result;
+              })
+              .catch(console.error)
+        } catch (error) {
+            console.error('Error adding a reply:', error)
+        }
+    }
+
     return (
-        <div>
-            <div key={index} style={{border: "2px solid white"}}>
-                <h2><a href="">{title}</a></h2>
+        <div className="single-post">
+            <div key={_id} style={{border: "2px solid white"}}>
+                <h2><Link to={`/posts/${_id}`} >{title}</Link></h2>
                 {/* Find a way to link title to a page that shows the individual post */}
                 <p>{description}</p>
                 <p>Price: {price}</p>
-                <p>{location}</p>
-                <p>{author.username}</p>
+                <p>Location: {location}</p>
+                <p>By: {author.username}</p>
                 {
                     willDeliver ? <p>Will Deliver</p> : null
                     // use 
@@ -54,16 +108,29 @@ const SinglePost = (props) => {
                 {
                     active ? <div>Still Active</div> : <div>No Longer Active</div>
                 }
-                <p>{createdAt}</p>
-                <p>{updatedAt}</p>
-                <p>{messages}</p>
-                {!!isAuthor ? 
-                    <button onClick={deletePost}>Delete</button> 
-                    : null}
-                {/* Add a button that allows for deleting! */}
+                <p>Posted {timeAgo(createdAt)}</p>
+                {
+                    createdAt !== updatedAt ? <p>Updated {timeAgo(updatedAt)}</p> : null
+                }
                 
-
-
+                {!!isAuthor ?
+                    <>
+                    <div>
+                    {
+                        messages.length === 1 ? <p>{messages.length} reply</p> : <p>{messages.length} replies</p>
+                    }
+                    </div> 
+                    
+                    <button onClick={deletePost}>Delete</button> 
+                    <button onClick={editPost}>Edit</button>
+                    </>
+                    : null
+                }
+                <form onSubmit={addMessage}>
+                    <input type="text" required value={messageContent} onChange={(evt) => setMessageContent(evt.target.value)}></input>
+                    <button type="submit">Reply</button>
+                </form>
+                
                 {/* For creating an edit/delete button (focus on deleting first, then editing) */}
                 {/* Add a button that allows for editing or deleting;
                 add onClick handlers that fetch PATCH for edit and DELETE for deleting
