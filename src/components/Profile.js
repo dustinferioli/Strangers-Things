@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 import SinglePost from "./SinglePost";
 let timeAgo = require('node-time-ago');
-// import {
-//     getUserData,
-// } from './api'
+
 
 const Profile = (props) => {
     const { userProfile, isLoggedIn } = props;
@@ -33,12 +31,10 @@ const Profile = (props) => {
             </div>
             <div className="profile-listings">
                 {
-                    // potentially add a button that sorts posts by when its added? using .reverse()
                     posts ? posts.map((singlePost, key) => {
                         return <SinglePost singlePost={singlePost} key={key}/>
                     }) : <div>No posts found.</div>
                 } 
-                {/* Messages are probably going to be an array, so you'll want to map over the messages to have them displayed; look above for what direction to go in */}
             </div>
             
             </>   

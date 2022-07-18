@@ -6,8 +6,6 @@ const NavBar = (props) => {
     const { isLoggedIn, setIsLoggedIn, currentLoggedInUser, setCurrentLoggedInUser, username } = props;
 
     function logOut(){
-        // delete localStorage.token;
-        // delete localStorage.currentUser;
         setTimeout(alert(`Logging you out...`), 1000);
         localStorage.clear();
         setIsLoggedIn(false);
@@ -22,7 +20,7 @@ const NavBar = (props) => {
             <div className="nav-links">
 
                 <Link to="/">Home</Link>
-                <Link to="/posts">Posts</Link>
+                <Link to="/posts/">Posts</Link>
                 {/* <Link to="/login">Login</Link> */}
                 {
                     !isLoggedIn ? <Link to="/login">Login</Link> 

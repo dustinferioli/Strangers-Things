@@ -10,7 +10,3 @@ const Home = () => {
 }
 
 export default Home;
-
-// I want to add a conditional where:
-// If the user is not logged in, they get a message displayed on home asking if they want to sign up or log in
-// If the user IS logged in, display "Welcome to Stranger's Things {username}"

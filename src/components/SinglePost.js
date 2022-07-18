@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { 
     APIURL,
     // deletePost,
@@ -8,9 +8,9 @@ import {
 import axios from "axios";
 let timeAgo = require('node-time-ago');
 const SinglePost = (props) => {
-    
-    const { singlePost, index } = props;
-    // console.log(singlePost);
+    let navigate = useNavigate();
+    const { singlePost, index, isLoggedIn } = props;
+    // console.log(isLoggedIn);
     const { author, 
         description, 
         isAuthor, 
@@ -25,7 +25,9 @@ const SinglePost = (props) => {
         _id  
     } = singlePost 
 
+    const [singlePostState, setSinglePostState] = useState([])
     const [messageContent, setMessageContent] = useState('');
+
 
     async function deletePost() {
         try {
@@ -95,7 +97,7 @@ const SinglePost = (props) => {
     return (
         <div className="single-post">
             <div key={_id} style={{border: "2px solid white"}}>
-                <h2><Link to={`/posts/${_id}`} >{title}</Link></h2>
+                <h4>{title}</h4>
                 {/* Find a way to link title to a page that shows the individual post */}
                 <p>{description}</p>
                 <p>Price: {price}</p>
@@ -122,14 +124,20 @@ const SinglePost = (props) => {
                     </div> 
                     
                     <button onClick={deletePost}>Delete</button> 
-                    <button onClick={editPost}>Edit</button>
+                    {/* <button onClick={navigate(`/posts/edit/${_id}`)}>Edit</button> */}
+                    <Link to={`./edit/${_id}`}>Edit</Link>
                     </>
                     : null
                 }
-                <form onSubmit={addMessage}>
-                    <input type="text" required value={messageContent} onChange={(evt) => setMessageContent(evt.target.value)}></input>
-                    <button type="submit">Reply</button>
-                </form>
+                {
+                    !isAuthor && isLoggedIn ?
+                    <form onSubmit={addMessage}>
+                        <input type="text" required value={messageContent} onChange={(evt) => setMessageContent(evt.target.value)}></input>
+                        <button type="submit">Reply</button>
+                    </form>
+                    : null
+                }
+                
                 
                 {/* For creating an edit/delete button (focus on deleting first, then editing) */}
                 {/* Add a button that allows for editing or deleting;

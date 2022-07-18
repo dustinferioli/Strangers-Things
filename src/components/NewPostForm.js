@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { APIURL } from "../api";
 import { useNavigate } from "react-router-dom";
 
-const NewPostForm = () => {
+const NewPostForm = (props) => {
+    const { isLoggedIn } = props;
+
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
@@ -10,6 +12,11 @@ const NewPostForm = () => {
     const [location, setLocation] = useState('')
     const navigate = useNavigate();
 
+    if (!isLoggedIn){
+        return (
+            <h1>Please log in to make a post</h1>
+        )
+    }
 
     // console.log(localStorage.userToken)
     const handleSubmit = async (evt) => {

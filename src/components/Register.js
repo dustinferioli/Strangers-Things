@@ -3,14 +3,15 @@ import React, { useState, useEffect } from "react";
 // import { useHistory } from "react-router-dom";
 // import { userLogin } from "../api";
 import { APIURL } from "../api";
+import { useNavigate } from "react-router-dom";
+
 
 const Register = () => {
-
+    const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [currentLoggedInUser, setCurrentLoggedInUser] = useState({}) // for saving a user's data in local storage
     const [token, setToken] = useState()
-    // const history = useHistory();
 
     
     // useEffect(() => {
@@ -41,7 +42,9 @@ const Register = () => {
             const { token } = result.data;
             setToken(token)
             localStorage.setItem("userToken", token);
-            
+            alert(`You are now registered!`);
+            alert(`Directing you to posts...`);
+            navigate("/posts");
         })
         .catch(console.error)
     }

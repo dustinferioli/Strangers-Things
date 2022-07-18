@@ -4,4 +4,6 @@ export { default as Register } from './Register.js';
 export { default as Login } from './Login.js';
 export { default as NavBar } from './NavBar.js';
 export { default as NewPostForm } from './NewPostForm';
-export { default as Profile } from './Profile'
+export { default as Profile } from './Profile';
+export { default as EditPostForm } from './EditPostForm';
+export { default as ErrorPage } from './ErrorPage'
