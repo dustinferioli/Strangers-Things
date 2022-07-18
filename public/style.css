@@ -1,8 +1,6 @@
 * {
     background-color: #121212;
     color: white;
-    /* display: flex; */
-    /* flex-direction: column; */
 }
 
 .nav-bar {
@@ -36,9 +34,46 @@
     border: 1px solid white;
 }
 
+.login-form {
+    width: 80%;
+    margin: 0 10% 0 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border: 1px solid white;
+}
+
+.registration-form {
+    width: 80%;
+    margin: 0 10% 0 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border: 1px solid white;
 }
 
 .nav-links {
     justify-content: space-between;
 
+}
+
+.logout {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.all-listings, .profile-listings {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+.single-post {
+    display: block;
+    text-align: center;
 }

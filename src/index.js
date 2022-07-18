@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import ReactDOM from "react-dom";
 import * as ReactDOMClient from 'react-dom/client';
 
 import {
@@ -23,7 +22,9 @@ import {
     Login,
     Home,
     NewPostForm,
-    Profile
+    Profile,
+    EditPostForm,
+    ErrorPage
 } from './components';
 
 const App = () => {
@@ -34,7 +35,6 @@ const App = () => {
     const [currentLoggedInUser, setCurrentLoggedInUser] = useState({}) 
     const [token, setToken] = useState('');
     const [userProfile, setUserProfile] = useState({})
-    // const [me, setMe] = useState({})
 
     useEffect(() => {
         getPosts()
@@ -64,12 +64,24 @@ const App = () => {
     return (
         <div className="app">
             <Router>
-                <NavBar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+                <NavBar 
+                    isLoggedIn={isLoggedIn} 
+                    setIsLoggedIn={setIsLoggedIn}
+                    currentLoggedInUser={currentLoggedInUser}
+                    setCurrentLoggedInUser={setCurrentLoggedInUser}
+                    username={username}
+                    />
             <Routes>
                 <Route path="/" element={<Home />}>
 
                 </Route>
-                <Route path="/posts" element={<Listings allPosts={allPosts} setAllPosts={setAllPosts} />} />
+                <Route path="/posts" element={<Listings 
+                    allPosts={allPosts} 
+                    setAllPosts={setAllPosts} 
+                    isLoggedIn={isLoggedIn}
+                    setIsLoggedIn={setIsLoggedIn}
+                    />} />
+                <Route path={`posts/edit/:postID`} element={<EditPostForm />} />
                 <Route path="/login" element={<Login 
                     username={username} 
                     setUsername={setUsername} 
@@ -79,11 +91,21 @@ const App = () => {
                     setCurrentLoggedInUser={setCurrentLoggedInUser}
                     token={token}
                     setToken={setToken}
+                    isLoggedIn={isLoggedIn}
+                    setIsLoggedIn={setIsLoggedIn}
                     /> } />
                 <Route path="/register" element={<Register />} />
-                <Route path="/addpost" element={<NewPostForm />} />
-                <Route path="/profile" element={<Profile userProfile={userProfile} setUserProfile={setUserProfile} />} />
-                {/* Take care of routes that don't exist with path="*" */}
+                <Route path="/addpost" element={<NewPostForm 
+                                        isLoggedIn={isLoggedIn}
+                                        setIsLoggedIn={setIsLoggedIn}
+                                            />} />
+                <Route path="/profile" element={<Profile 
+                                    userProfile={userProfile} 
+                                    setUserProfile={setUserProfile} 
+                                    isLoggedIn={isLoggedIn}
+                                    setIsLoggedIn={setIsLoggedIn}
+                                    />} />
+                <Route path="*" element={<ErrorPage />} />
             </Routes>
             </Router>
         </div>
