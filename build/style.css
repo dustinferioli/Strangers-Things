@@ -1,9 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
 * {
     background-color: #121212;
     color: white;
-    font-family: Roboto, sans-serif;
 }
 
 .nav-bar {
