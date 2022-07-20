@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import SinglePost from './SinglePost';
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 
-// const [searchedPosts, setSearchedPosts] = useState([]);
-// const [searchTerm, setSearchTerm] = useState('')
 
-// const postMatches = (post, text) => {
+
+// const Searchbar = () => {
+
+//     const [searchedPosts, setSearchedPosts] = useState([]);
+//     const [searchTerm, setSearchTerm] = useState('');
+//     const filteredPosts = posts.fiter(post => postMatches(post, searchTerm));
+//     const postsToDisplay = searchTerm.length ? filteredPosts : posts;
+
+//     const postMatches = (post, text) => {
 //     const { title, description, location } = post;
 //     const searchThrough = [description, location, title];
 //     for (let i = 0; i < searchThrough.length; i++){
@@ -15,20 +21,19 @@ import { Link } from "react-router-dom";
 //         }
 //     }
 // }
-
-// const Searchbar = () => {
 //     return (
 //         <div className="search-bar">
 //             <input type="text" placeholder="Search for posts" value={searchTerm}
 //                 onChange={(evt) => {
 //                     setSearchTerm(evt.target.value)
-//                 }} />
+//                 }}> </input>
 //         </div>
+//         // <h1>Placeholder</h1>
 //     )
+    
 // }
 
-// const filteredPosts = posts.fiter(post => postMatches(post, searchTerm));
-// const postsToDisplay = searchTerm.length ? filteredPosts : posts;
+
 
 const Listings = (props) => {
     const { allPosts, isLoggedIn } = props;
@@ -36,6 +41,7 @@ const Listings = (props) => {
 
     return (
         <>
+        {/* <Searchbar /> */}
         <div className="all-listings">
             {
                 // potentially add a button that sorts posts by when its added? using .reverse()

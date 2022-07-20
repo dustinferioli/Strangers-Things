@@ -25,7 +25,7 @@ const SinglePost = (props) => {
         _id  
     } = singlePost 
 
-    const [singlePostState, setSinglePostState] = useState([])
+    // const [singlePostState, setSinglePostState] = useState([])
     const [messageContent, setMessageContent] = useState('');
 
 
