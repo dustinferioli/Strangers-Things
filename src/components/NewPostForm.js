@@ -38,7 +38,6 @@ const NewPostForm = (props) => {
             })
         }).then(response => response.json())
             .then(result => {
-                // console.log(result);
                 setTitle(title);
                 setDescription(description);
                 setPrice(price);

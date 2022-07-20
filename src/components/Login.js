@@ -61,7 +61,7 @@ const Login = (props) => {
         setUsername(username);
         setPassword(password);
         setIsLoggedIn(true);
-        setTimeout(alert(`Logging you in, ${username}`), 2000);
+        // setTimeout(alert(`Logging you in, ${username}`), 2000);
         navigate("/profile", { replace: true });
         
 

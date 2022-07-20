@@ -6,7 +6,7 @@ const NavBar = (props) => {
     const { isLoggedIn, setIsLoggedIn, currentLoggedInUser, setCurrentLoggedInUser, username } = props;
 
     function logOut(){
-        setTimeout(alert(`Logging you out...`), 1000);
+        // setTimeout(alert(`Logging you out...`), 1000);
         localStorage.clear();
         setIsLoggedIn(false);
         setCurrentLoggedInUser({});

@@ -8,7 +8,7 @@ const Profile = (props) => {
     if (!isLoggedIn){
         return <h1>Login to view profile</h1>
     } else {
-        console.log(userProfile);
+        // console.log(userProfile);
         const { messages, posts, username } = userProfile
         return(
             <> 
@@ -29,6 +29,7 @@ const Profile = (props) => {
                     })
                 }
             </div>
+            <h1>Your Posts</h1>
             <div className="profile-listings">
                 {
                     posts ? posts.map((singlePost, key) => {

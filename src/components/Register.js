@@ -44,7 +44,7 @@ const Register = () => {
             localStorage.setItem("userToken", token);
             alert(`You are now registered!`);
             alert(`Directing you to posts...`);
-            navigate("/posts");
+            navigate("/posts", { replace: true });
         })
         .catch(console.error)
     }
