@@ -71,42 +71,40 @@ const App = () => {
                     setCurrentLoggedInUser={setCurrentLoggedInUser}
                     username={username}
                     />
-            <Routes>
-                <Route path="/" element={<Home />}>
-
-                </Route>
-                <Route path="/posts" element={<Listings 
-                    allPosts={allPosts} 
-                    setAllPosts={setAllPosts} 
-                    isLoggedIn={isLoggedIn}
-                    setIsLoggedIn={setIsLoggedIn}
-                    />} />
-                <Route path={`posts/edit/:postID`} element={<EditPostForm />} />
-                <Route path="/login" element={<Login 
-                    username={username} 
-                    setUsername={setUsername} 
-                    password={password}
-                    setPassword={setPassword}
-                    currentLoggedInUser={currentLoggedInUser}
-                    setCurrentLoggedInUser={setCurrentLoggedInUser}
-                    token={token}
-                    setToken={setToken}
-                    isLoggedIn={isLoggedIn}
-                    setIsLoggedIn={setIsLoggedIn}
-                    /> } />
-                <Route path="/register" element={<Register />} />
-                <Route path="/addpost" element={<NewPostForm 
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/posts" element={<Listings 
+                        allPosts={allPosts} 
+                        setAllPosts={setAllPosts} 
+                        isLoggedIn={isLoggedIn}
+                        setIsLoggedIn={setIsLoggedIn}
+                        />} />
+                    <Route path={`posts/edit/:postID`} element={<EditPostForm />} />
+                    <Route path="/login" element={<Login 
+                        username={username} 
+                        setUsername={setUsername} 
+                        password={password}
+                        setPassword={setPassword}
+                        currentLoggedInUser={currentLoggedInUser}
+                        setCurrentLoggedInUser={setCurrentLoggedInUser}
+                        token={token}
+                        setToken={setToken}
+                        isLoggedIn={isLoggedIn}
+                        setIsLoggedIn={setIsLoggedIn}
+                        /> } />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/addpost" element={<NewPostForm 
+                                            isLoggedIn={isLoggedIn}
+                                            setIsLoggedIn={setIsLoggedIn}
+                                                />} />
+                    <Route path="/profile" element={<Profile 
+                                        userProfile={userProfile} 
+                                        setUserProfile={setUserProfile} 
                                         isLoggedIn={isLoggedIn}
                                         setIsLoggedIn={setIsLoggedIn}
-                                            />} />
-                <Route path="/profile" element={<Profile 
-                                    userProfile={userProfile} 
-                                    setUserProfile={setUserProfile} 
-                                    isLoggedIn={isLoggedIn}
-                                    setIsLoggedIn={setIsLoggedIn}
-                                    />} />
-                <Route path="*" element={<ErrorPage />} />
-            </Routes>
+                                        />} />
+                    <Route path="*" element={<ErrorPage />} />
+                </Routes>
             </Router>
         </div>
     )

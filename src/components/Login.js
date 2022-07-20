@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { APIURL } from "../api";
 import { useNavigate } from "react-router-dom";
 const Login = (props) => {
-    let navigate = useNavigate();
+    
     const { currentLoggedInUser, setCurrentLoggedInUser, isLoggedIn, setIsLoggedIn } = props;
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -26,6 +26,7 @@ const Login = (props) => {
     // token determines logged in state
     // if token exists, display certain info
     const handleSubmit = async (evt) => {
+        let navigate = useNavigate();
         evt.preventDefault();
         await fetch(`${APIURL}/users/login`, {
             method: "POST",
@@ -61,8 +62,8 @@ const Login = (props) => {
         setUsername(username);
         setPassword(password);
         setIsLoggedIn(true);
-        // setTimeout(alert(`Logging you in, ${username}`), 2000);
-        navigate("/profile", { replace: true });
+        // setTimeout(alert(`Logging you in, ${username}`), 3000);
+        // navigate("/profile", { replace: true });
         
 
         // console.log(`This is our new localStorage: ${localStorage.currentUser}`)
