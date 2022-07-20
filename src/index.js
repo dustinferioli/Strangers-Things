@@ -45,20 +45,21 @@ const App = () => {
             .catch(error => {
                 console.error(error);
             });
+
+        testMe()
+            .then(isLoggedIn => {
+                setIsLoggedIn(isLoggedIn);
+            });
+
         getUserData()
             .then(userProfile => {
-                // console.log(userProfile)
                 setUserProfile(userProfile);
             })
             .catch (error => {
                 console.error(error);
             });
-        testMe()
-            .then(isLoggedIn => {
-                setIsLoggedIn(isLoggedIn);
-                // console.log(isLoggedIn);
-            } )
-    }, []);
+        
+    }, [isLoggedIn]);
 
 
     return (

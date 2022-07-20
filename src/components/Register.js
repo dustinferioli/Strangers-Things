@@ -10,7 +10,7 @@ const Register = () => {
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [currentLoggedInUser, setCurrentLoggedInUser] = useState({}) // for saving a user's data in local storage
+    // const [currentLoggedInUser, setCurrentLoggedInUser] = useState({}) // for saving a user's data in local storage
     const [token, setToken] = useState()
 
     

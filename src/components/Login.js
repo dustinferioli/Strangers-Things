@@ -2,13 +2,14 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 // import { userLogin } from "../api";
 import { APIURL } from "../api";
-import { useNavigate } from "react-router-dom";
+
+import { useNavigate, Link } from "react-router-dom";
 const Login = (props) => {
     
-    const { currentLoggedInUser, setCurrentLoggedInUser, isLoggedIn, setIsLoggedIn } = props;
+    const { isLoggedIn, setIsLoggedIn } = props;
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    // const [currentLoggedInUser, setCurrentLoggedInUser] = useState({}) 
+    const [currentLoggedInUser, setCurrentLoggedInUser] = useState({}) 
     const [token, setToken] = useState('');
 
     
@@ -26,7 +27,7 @@ const Login = (props) => {
     // token determines logged in state
     // if token exists, display certain info
     const handleSubmit = async (evt) => {
-        let navigate = useNavigate();
+        // let navigate = useNavigate();
         evt.preventDefault();
         await fetch(`${APIURL}/users/login`, {
             method: "POST",
@@ -94,7 +95,7 @@ const Login = (props) => {
                     <div>You are currently logged out!</div>
                 }
             </div>
-            <div>Don't have an account? <a href="/register">Register for an account</a></div>
+            <div>Don't have an account? <Link to="/register">Register for an account</Link></div>
         </div>
     )
 }
