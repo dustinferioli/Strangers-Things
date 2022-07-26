@@ -59,4 +59,18 @@ export async function getPosts() {
     // getPosts();
 }
 
+// deleting posts
+export async function deletePost() {
+    try {
+        const { data } = await axios.delete(`${APIURL}/posts/${_id}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.userToken}`
+            }});
+        console.log(data);
+        alert(`Deleting post...`)
+    } catch (error) {
+        console.error('Failed to delete post: ', error)
+    }
+}
 

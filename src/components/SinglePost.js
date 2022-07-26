@@ -97,7 +97,7 @@ const SinglePost = (props) => {
     return (
         <div className="single-post">
             <div key={_id} style={{border: "2px solid white"}}>
-                <h4>{title}</h4>
+                <h3>{title}</h3>
                 {/* Find a way to link title to a page that shows the individual post */}
                 <p>{description}</p>
                 <p>Price: {price}</p>

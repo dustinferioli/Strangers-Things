@@ -1,7 +1,5 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-// import { useHistory } from "react-router-dom";
-// import { userLogin } from "../api";
 import { APIURL } from "../api";
 import { useNavigate } from "react-router-dom";
 
@@ -43,8 +41,8 @@ const Register = () => {
             setToken(token)
             localStorage.setItem("userToken", token);
             alert(`You are now registered!`);
-            alert(`Directing you to posts...`);
-            navigate("/posts", { replace: true });
+            alert(`Directing you to login page...`);
+            navigate("/login", { replace: true });
         })
         .catch(console.error)
     }

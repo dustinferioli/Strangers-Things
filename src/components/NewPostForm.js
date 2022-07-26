@@ -45,8 +45,9 @@ const NewPostForm = (props) => {
                 setLocation(location)
             })
             .catch(console.error)
-            setTimeout(alert('Adding post...'), 1000);
-            navigate("/profile", { replace: true });
+            // setTimeout(alert('Adding post...'), 1000);
+            alert(`Your post has been created!`)
+            // navigate("/profile", { replace: true });
             
     }
 

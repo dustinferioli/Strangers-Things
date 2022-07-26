@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SinglePost from './SinglePost';
 // import { Link } from "react-router-dom";
 
-
+import { getPosts }  from '../api/index'
 
 
 // const Searchbar = () => {
@@ -36,7 +36,20 @@ import SinglePost from './SinglePost';
 
 
 const Listings = (props) => {
-    const { allPosts, isLoggedIn } = props;
+    const [allPosts, setAllPosts] = useState([]);
+    useEffect(() => {
+        getPosts()
+                .then(allPosts => {
+                // console.log(posts)
+                setAllPosts(allPosts);
+                })
+                .catch(error => {
+                console.error(error);
+                });
+  })
+        
+
+    const { isLoggedIn } = props;
     const { posts } = allPosts;
 
     return (

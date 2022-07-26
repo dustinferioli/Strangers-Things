@@ -65,6 +65,8 @@ const Login = (props) => {
         setIsLoggedIn(true);
         // setTimeout(alert(`Logging you in, ${username}`), 3000);
         // navigate("/profile", { replace: true });
+
+        alert(`You are now logged in ${username}`)
         
 
         // console.log(`This is our new localStorage: ${localStorage.currentUser}`)
