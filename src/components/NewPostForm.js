@@ -47,7 +47,7 @@ const NewPostForm = (props) => {
             .catch(console.error)
             // setTimeout(alert('Adding post...'), 1000);
             alert(`Your post has been created!`)
-            // navigate("/profile", { replace: true });
+            navigate("/posts", { replace: true });
             
     }
 

@@ -37,27 +37,27 @@ const App = () => {
     const [userProfile, setUserProfile] = useState({})
 
     useEffect(() => {
-        getPosts()
-            .then(allPosts => {
-                // console.log(posts)
-                setAllPosts(allPosts);
-            })
-            .catch(error => {
-                console.error(error);
-            });
+        // getPosts()
+        //     .then(allPosts => {
+        //         // console.log(posts)
+        //         setAllPosts(allPosts);
+        //     })
+        //     .catch(error => {
+        //         console.error(error);
+        //     });
 
         testMe()
             .then(isLoggedIn => {
                 setIsLoggedIn(isLoggedIn);
             });
 
-        getUserData()
-            .then(userProfile => {
-                setUserProfile(userProfile);
-            })
-            .catch (error => {
-                console.error(error);
-            });
+        // getUserData()
+        //     .then(userProfile => {
+        //         setUserProfile(userProfile);
+        //     })
+        //     .catch (error => {
+        //         console.error(error);
+        //     });
         
     }, [isLoggedIn]);
 

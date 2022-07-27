@@ -20,12 +20,6 @@ const Login = (props) => {
     }, [])
 
 
-    // set token to local storage
-    // localStorage method - setItem
-    // grab token from response and set it to localStorage
-    // window.localStorage.getItem to retreive the item I set
-    // token determines logged in state
-    // if token exists, display certain info
     const handleSubmit = async (evt) => {
         // let navigate = useNavigate();
         evt.preventDefault();

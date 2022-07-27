@@ -23,10 +23,6 @@ const SinglePostProfile = (props) => {
         _id
     } = singlePost 
 
-    // const [singlePostState, setSinglePostState] = useState([])
-    // const [messageContent, setMessageContent] = useState('');
-
-
     async function deletePost() {
         try {
             const { data } = await axios.delete(`${APIURL}/posts/${_id}`, {
